@@ -1,10 +1,15 @@
-
-
 import 'package:divyang_sscomposebook/pages/buttons.dart';
 import 'package:divyang_sscomposebook/pages/column.dart';
 import 'package:divyang_sscomposebook/pages/container.dart';
+import 'package:divyang_sscomposebook/pages/dribble.dart';
+import 'package:divyang_sscomposebook/pages/dribblehome.dart';
+import 'package:divyang_sscomposebook/pages/flutterlogo.dart';
+import 'package:divyang_sscomposebook/pages/image.dart';
+import 'package:divyang_sscomposebook/pages/stack.dart';
+import 'package:divyang_sscomposebook/pages/textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 //Splash Screen Created......
 void main() => runApp(const MyApp());
@@ -16,7 +21,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.blue, useMaterial3: false),
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        useMaterial3: false,
+        brightness: Brightness.dark,
+        textTheme: TextTheme(
+          titleMedium: GoogleFonts.roboto(
+              color: Colors.purple, fontWeight: FontWeight.w500, fontSize: 22),
+        ),
+      ),
       home: const _MyState(),
     );
   }
@@ -41,11 +54,14 @@ class _MyStateState extends State<_MyState> {
     return Scaffold(
         appBar: AppBar(
           elevation: 0.0,
-          backgroundColor: Colors.blueAccent,
-          systemOverlayStyle: const SystemUiOverlayStyle(
-            statusBarColor: Colors.blueAccent,
+          backgroundColor: const Color.fromRGBO(230, 233, 241, 1),
+          systemOverlayStyle: SystemUiOverlayStyle(
+              statusBarColor: const Color.fromRGBO(230, 233, 241, 1),
+              statusBarIconBrightness: Theme.of(context).brightness),
+          title: Text(
+            'Implemented by Divyang',
+            style: Theme.of(context).textTheme.titleMedium,
           ),
-          title: const Text('Implemented by Divyang'),
         ),
         backgroundColor: Colors.white,
         body: _listWidgetSection());
@@ -56,7 +72,15 @@ class _MyStateState extends State<_MyState> {
       children: <Widget>[
         _container(widgetName: 'Container', route: const ContainerWidget()),
         _container(widgetName: 'Column & Row', route: const ColumnWidget()),
-        _container(widgetName: 'Buttons & SizedBox', route: const ButtonsWidget()),
+        _container(
+            widgetName: 'Buttons & SizedBox', route: const ButtonsWidget()),
+        _container(
+            widgetName: 'Flutter-Logo', route: const FlutterLogoWidget()),
+        _container(widgetName: 'TextField', route: const TextFieldWidget()),
+        _container(widgetName: 'Image-Widget', route: ImageWidget()),
+        _container(widgetName: 'Stack Widget', route: StackWidget()),
+        _container(widgetName: 'Dribble Home', route: DribbleHome()),
+        _container(widgetName: 'Dribble SignIn', route: DribbleDesign())
       ],
     );
   }
@@ -73,7 +97,7 @@ class _MyStateState extends State<_MyState> {
           );
         },
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.redAccent,
+          backgroundColor: Colors.purple,
           textStyle: const TextStyle(
               color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.w400),
         ),
