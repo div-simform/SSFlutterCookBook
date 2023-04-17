@@ -14,7 +14,11 @@ class _DribbleHomeState extends State<DribbleHome> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.blue),
+      theme: ThemeData(
+          primarySwatch: Colors.blue,
+          textTheme: TextTheme(
+            bodySmall: TextStyle(fontFamily: 'Poppins', fontSize: 15),
+          )),
       home: WillPopScope(
         onWillPop: () async {
           Navigator.pop(context);
@@ -54,10 +58,9 @@ class _DribbleHomeState extends State<DribbleHome> {
             primaryText: 'Explore all the most exiting jobs roles',
             secondaryText: "based on your interest And study major",
             colors: Colors.grey,
-            fontSize: 18,
           ),
           SizedBox(height: 40.0),
-          DribbleSwapWidget(),
+          DribbleSwapWidget()
         ],
       ),
     );
