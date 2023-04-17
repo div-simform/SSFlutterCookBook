@@ -13,6 +13,14 @@ class DribbleDesign extends StatefulWidget {
 
 class _DribbleDesignState extends State<DribbleDesign> {
   bool isSelected = false;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    SystemChannels.textInput.invokeMethod('TextInput.hide');
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -31,7 +39,7 @@ class _DribbleDesignState extends State<DribbleDesign> {
 
   Widget _bodyUI({BuildContext? context}) {
     return Container(
-      margin: EdgeInsets.only(top: 60, right: 16, left: 16, bottom: 20),
+      margin: EdgeInsets.only(top: 70, right: 16, left: 16, bottom: 20),
       padding: EdgeInsets.only(bottom: 20),
       width: MediaQuery.of(context!).size.width,
       decoration: BoxDecoration(
@@ -63,8 +71,8 @@ class _DribbleDesignState extends State<DribbleDesign> {
             child: Text(
               'Recovery Password',
               //textAlign: TextAlign.right,
-              style: GoogleFonts.roboto(
-                  fontWeight: FontWeight.w500, color: Colors.blueGrey),
+              style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                  color: Colors.blueGrey, fontWeight: FontWeight.w500),
             ),
           ),
           const SizedBox(height: 40.0),
@@ -91,5 +99,12 @@ class _DribbleDesignState extends State<DribbleDesign> {
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+
+    super.dispose();
   }
 }

@@ -13,7 +13,8 @@ class DribbleTextWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       '$text',
-      style: GoogleFonts.roboto(fontSize: fontSize),
+      style:
+          Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: fontSize),
     );
   }
 }
@@ -27,12 +28,18 @@ class DribbleRegisterText extends StatelessWidget {
       children: [
         Text(
           "Not a member?",
-          style: GoogleFonts.roboto(color: Colors.black, fontSize: 15.0),
+          style: Theme.of(context)
+              .textTheme
+              .bodySmall!
+              .copyWith(color: Colors.black, fontSize: 15.0),
         ),
         const SizedBox(width: 3.0),
         Text(
           "Register now",
-          style: GoogleFonts.roboto(color: Colors.blue, fontSize: 15.0),
+          style: Theme.of(context)
+              .textTheme
+              .bodySmall!
+              .copyWith(color: Colors.blue, fontSize: 15.0),
         ),
       ],
     );
@@ -129,6 +136,7 @@ class DribblePasswordTextField extends StatefulWidget {
 
 class _DribblePasswordTextFieldState extends State<DribblePasswordTextField> {
   bool isSelected = false;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -146,8 +154,10 @@ class _DribblePasswordTextFieldState extends State<DribblePasswordTextField> {
         textInputAction: TextInputAction.done,
         obscuringCharacter: "*",
         obscureText: isSelected ? false : true,
+        maxLength: 8,
         keyboardType: TextInputType.visiblePassword,
         decoration: InputDecoration(
+          counter: Offstage(),
           fillColor: Colors.white.withOpacity(0.6),
           filled: true,
           hintText: widget.hintText,
@@ -187,6 +197,7 @@ class DribbleSignInButton extends StatefulWidget {
 }
 
 class _DribbleSignInButtonState extends State<DribbleSignInButton> {
+  bool _isClicked = false;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -198,13 +209,26 @@ class _DribbleSignInButtonState extends State<DribbleSignInButton> {
         child: MaterialButton(
           minWidth: MediaQuery.of(context).size.width,
           color: const Color.fromRGBO(252, 107, 104, 1.0),
-          onPressed: () {},
+          onPressed: () {
+            FocusScope.of(context).unfocus();
+
+            // setState(() {
+            //   _isClicked = !_isClicked;
+            // });
+          },
           child: Padding(
             padding: const EdgeInsets.all(15.0),
-            child: Text(
-              'Sign in',
-              style: GoogleFonts.roboto(color: Colors.white, fontSize: 20),
-            ),
+            child: _isClicked
+                ? const CupertinoActivityIndicator(
+                    color: Colors.white,
+                  )
+                : Text(
+                    'Sign in',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodySmall!
+                        .copyWith(color: Colors.white, fontSize: 20.0),
+                  ),
           ),
         ),
       ),
@@ -278,14 +302,17 @@ class DribbleRichText extends StatelessWidget {
       textAlign: TextAlign.center,
       text: TextSpan(
         text: '${primaryText}\n',
-        style: GoogleFonts.poppins(color: colors, fontSize: fontSize),
+        style: Theme.of(context)
+            .textTheme
+            .bodySmall!
+            .copyWith(color: colors, fontSize: 15.0),
         children: [
           TextSpan(
-            text: secondaryText,
-            style: GoogleFonts.poppins(
-              fontSize: fontSize,
-            ),
-          ),
+              text: secondaryText,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodySmall!
+                  .copyWith(color: colors, fontSize: 17.0)),
         ],
       ),
     );

@@ -5,6 +5,7 @@ import 'package:divyang_sscomposebook/pages/dribble.dart';
 import 'package:divyang_sscomposebook/pages/dribblehome.dart';
 import 'package:divyang_sscomposebook/pages/flutterlogo.dart';
 import 'package:divyang_sscomposebook/pages/image.dart';
+import 'package:divyang_sscomposebook/pages/lifecycle.dart';
 import 'package:divyang_sscomposebook/pages/stack.dart';
 import 'package:divyang_sscomposebook/pages/textfield.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        useMaterial3: false,
+        useMaterial3: true,
         brightness: Brightness.dark,
         textTheme: TextTheme(
           titleMedium: GoogleFonts.roboto(
@@ -80,7 +81,9 @@ class _MyStateState extends State<_MyState> {
         _container(widgetName: 'Image-Widget', route: ImageWidget()),
         _container(widgetName: 'Stack Widget', route: StackWidget()),
         _container(widgetName: 'Dribble Home', route: DribbleHome()),
-        _container(widgetName: 'Dribble SignIn', route: DribbleDesign())
+        _container(widgetName: 'Dribble SignIn', route: DribbleDesign()),
+        _container(
+            widgetName: 'Dark / Light Theme added', route: FlutterLifecycle())
       ],
     );
   }
